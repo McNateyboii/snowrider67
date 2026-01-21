@@ -17,6 +17,8 @@
         // 1=password on, 0=skip password
         const ENABLE_PASSWORD = 1;
         const PASSWORD = "nathan is the best";
+        const status = localStorage.getItem('isLoggedIn');
+        
 
         function startGame() {
             if (document.getElementById("login")) document.getElementById("login").style.display = "none";
@@ -25,14 +27,15 @@
         }
 
         function checkPassword() {
-            if (ENABLE_PASSWORD === 0 || document.getElementById("pw").value === PASSWORD || localStorage.getItem('isLoggedIn')===1) {
+            if (ENABLE_PASSWORD === 0 || document.getElementById("pw").value === PASSWORD) {
                 localStorage.setItem('isLoggedIn',1);
                 startGame();
-            } else {
-                alert("Wrong password");
             }
         }
         if (ENABLE_PASSWORD === 0) window.addEventListener("load", startGame);
+        if (status == 1) {
+            startGame();
+        }
     </script>
 </head>
 
